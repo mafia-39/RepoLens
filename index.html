@@ -198,7 +198,10 @@
         const { useState, useEffect, useRef } = React;
 
         // Configuration
-        const API_BASE_URL = 'http://localhost:8000/api';
+        // Use `window.__API_BASE__` to override at runtime (set by hosting),
+        // otherwise default to same-origin `/api` so the frontend talks to the
+        // backend when served from the same host.
+        const API_BASE_URL = window.__API_BASE__ || '/api';
         const POLL_INTERVAL = 2000;
 
         // Icons
