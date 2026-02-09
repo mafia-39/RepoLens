@@ -131,13 +131,13 @@ async def serve_spa(path: str):
     """Serve index.html for SPA routing (catch-all for non-API, non-static routes)."""
     # Skip if it looks like an API call or static asset with extension
     if path.startswith("api") or "." in path.split("/")[-1]:
-        return FileResponse("404", status_code=404)
+        return JSONResponse({"error": "Not found"}, status_code=404)
     
     import os
     index_path = os.path.join(os.path.dirname(__file__), "index.html")
     if os.path.exists(index_path):
         return FileResponse(index_path, media_type="text/html")
-    return {"error": "index.html not found"}
+    return JSONResponse({"error": "index.html not found"}, status_code=404)
 
 
 if __name__ == "__main__":
