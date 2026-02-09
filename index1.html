@@ -198,7 +198,9 @@
         const { useState, useEffect, useRef } = React;
 
         // Configuration
-        const API_BASE_URL = 'http://localhost:8000/api';
+        // Frontend and backend are now served from the same origin,
+        // so all API calls are same-origin (no CORS needed).
+        const API_BASE_URL = '/api';
         const POLL_INTERVAL = 2000;
 
         // Icons
